@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setUserCookie } from "../../redux/login/loginSlice";
+import { actionLogin } from "../../redux/login/loginSlice";
 import { useNavigate } from "react-router";
 import Cookies from "js-cookie";
+import ContinentsList from "../../components/continentList";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -14,10 +15,14 @@ export default function Dashboard() {
       if (!client_token) {
         navigate("/login");
       } else {
-        dispatch(setUserCookie(client_token));
+        dispatch(actionLogin({ key: client_token }));
       }
     }
   }, []);
 
-  return <div>Dashboard</div>;
+  return (
+    <main>
+      <ContinentsList />
+    </main>
+  );
 }

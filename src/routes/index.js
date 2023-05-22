@@ -9,6 +9,7 @@ export default function ManagerRoutes() {
       <Routes>
         <Route path="login" element={<LoginPage />} />
         <Route path="dashboard" element={<Dashboard />} />
+
         <Route path="notfound" element={<NotFoundPage />} />
         <Route path="*" element={<Dashboard />} />
       </Routes>
