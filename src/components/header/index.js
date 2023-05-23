@@ -1,22 +1,27 @@
 import { useDispatch } from "react-redux";
-import { Navigate } from "react-router";
 import { logoutUser } from "../../redux/login/loginSlice";
+import { useNavigate } from "react-router";
+import { HeaderStyle } from "./styles";
 
 export default function Header() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handleLogout() {
     dispatch(logoutUser());
+    navigate("/login");
   }
 
   return (
-    <header>
-      <div>
-        <div>API-Football</div>
+    <HeaderStyle>
+      <div className="alignPosition1">
+        <div className="alignPosition">API-Football</div>
       </div>
-      <div>
-        <div onClick={() => handleLogout()}>Logout</div>
+      <div className="alignPosition1">
+        <button className="logoutButton" onClick={() => handleLogout()}>
+          Logout
+        </button>
       </div>
-    </header>
+    </HeaderStyle>
   );
 }

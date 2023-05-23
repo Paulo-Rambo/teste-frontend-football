@@ -1,16 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { loginUser } from "../../external/axios";
+import { loginUser, getCountrys } from "../../external/axios";
 import Cookies from "js-cookie";
 import { continentsCountry } from "./dataCleaner";
+import { setCountryList } from "../dashboard/dashBoardSlice";
 
 export const actionLogin = createAsyncThunk(
   "login/actionLogin",
-  async (data) => {
+  async (data, { dispatch }) => {
     console.log(data);
-    const response = await loginUser(data.key);
+    const response = await getCountrys(data.key);
     console.log(response.data.response);
-    const newData = continentsCountry(response.data.response);
-    return { key: data.key, country: newData };
+    dispatch(setCountryList(response.data.response));
+    return { key: data.key };
   }
 );
 
@@ -21,7 +22,6 @@ const loginSlice = createSlice({
     userKey: "",
     loading: true,
     error: null,
-    country: {},
   },
   reducers: {
     setUserCookie: (state, action) => {
@@ -47,8 +47,6 @@ const loginSlice = createSlice({
         state.authStatus = true;
         state.userKey = action.payload.key;
         Cookies.set("api_sports_key", action.payload.key);
-        state.country = action.payload.country;
-        console.log(action.payload.country);
       })
       .addCase(actionLogin.rejected, (state, action) => {
         state.loading = false;

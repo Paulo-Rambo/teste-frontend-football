@@ -4,6 +4,7 @@ import { actionLogin } from "../../redux/login/loginSlice";
 import { Outlet, useNavigate } from "react-router";
 import Cookies from "js-cookie";
 import Header from "../../components/header";
+import { MainStyle } from "./styles";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -22,16 +23,13 @@ export default function Dashboard() {
     }
     return;
   }, []);
-  useEffect(() => {
-    !authStatus && navigate("/login");
-  }, [authStatus]);
 
   return (
     <>
       <Header />
-      <main>
+      <MainStyle>
         <Outlet />
-      </main>
+      </MainStyle>
     </>
   );
 }
