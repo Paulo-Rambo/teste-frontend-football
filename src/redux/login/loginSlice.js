@@ -28,6 +28,11 @@ const loginSlice = createSlice({
       state.userKey = action.payload.key;
       state.authStatus = true;
     },
+    logoutUser: (state, action) => {
+      state.authStatus = false;
+      state.userKey = "";
+      Cookies.remove("api_sports_key");
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -54,4 +59,4 @@ const loginSlice = createSlice({
 });
 
 export default loginSlice.reducer;
-export const { setUserCookie } = loginSlice.actions;
+export const { setUserCookie, logoutUser } = loginSlice.actions;
