@@ -1,5 +1,55 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getSeasons, getLeagues } from "../../external/axios";
+import {
+  getSeasons,
+  getLeagues,
+  getTeamsByLeague,
+  getPlayersByTeam,
+  getStatistisByTeam,
+} from "../../external/axios";
+
+export const requestTeamStatistics = createAsyncThunk(
+  "dashboard/requestTeamStatistics",
+  async (teamId, { getState }) => {
+    const { login } = getState();
+    const { dashboard } = getState();
+    const { userKey } = login;
+    const { selectedYear, selectedLeagueId } = dashboard;
+    const response = await getStatistisByTeam(
+      userKey,
+      selectedYear,
+      selectedLeagueId,
+      teamId
+    );
+    console.log(response.data);
+    return response.data;
+  }
+);
+
+export const requestTeamPlayers = createAsyncThunk(
+  "dashboard/requestTeamPlayers",
+  async (teamId, { getState }) => {
+    const { login } = getState();
+    const { dashboard } = getState();
+    const { userKey } = login;
+    const { selectedYear } = dashboard;
+    const response = await getPlayersByTeam(userKey, teamId, selectedYear);
+    console.log(response.data);
+    return response.data;
+  }
+);
+
+export const requestTeams = createAsyncThunk(
+  "dashboard/requestTeams",
+  async (leagueId, { getState }) => {
+    const { login } = getState();
+    const { dashboard } = getState();
+    const { userKey } = login;
+    const { selectedYear } = dashboard;
+    const response = await getTeamsByLeague(userKey, selectedYear, leagueId);
+    const newData = [leagueId, response.data];
+    return newData;
+  }
+);
 
 export const requestSeasons = createAsyncThunk(
   "dashboard/requestSeasons",
@@ -21,7 +71,6 @@ export const requestLeagues = createAsyncThunk(
     const { userKey } = login;
     const { selectedCountry } = dashboard;
     const response = await getLeagues(userKey, selectedCountry, year);
-    console.log(response);
     const newData = [year, response.data];
     return newData;
   }
@@ -38,8 +87,31 @@ const dashboardSlice = createSlice({
     selectedCountry: "",
     leagueBySeasonAndCountryList: [],
     selectedYear: "",
+    selectedLeagueId: "",
+    selectedTeamsList: [],
+    filteredTeamsList: [],
+    selectedPlayersList: [],
+    filteredPlayersList: [],
   },
   reducers: {
+    filterPlayersList: (state, action) => {
+      const searchValue = action.payload;
+      const list = state.selectedPlayersList;
+      const newList = list.filter((obj) =>
+        obj.player.name.toLowerCase().startsWith(searchValue.toLowerCase())
+      );
+      state.filteredPlayersList = newList;
+      console.log(newList);
+    },
+    filterTeamsList: (state, action) => {
+      const searchValue = action.payload;
+      const list = state.selectedTeamsList;
+      const newList = list.filter((team) =>
+        team.team.name.toLowerCase().startsWith(searchValue.toLowerCase())
+      );
+      state.filteredTeamsList = newList;
+      console.log(newList);
+    },
     setTeamName: (state, action) => {
       console.log(`team name ${action.payload}`);
       state.selectedCountry = action.payload;
@@ -101,6 +173,56 @@ const dashboardSlice = createSlice({
       .addCase(requestLeagues.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(requestTeams.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        console.log("pending");
+      })
+      .addCase(requestTeams.fulfilled, (state, action) => {
+        state.error = null;
+        state.loading = false;
+        state.selectedTeamsList = action.payload[1].response;
+        state.filteredTeamsList = action.payload[1].response;
+        state.selectedLeagueId = action.payload[0];
+        console.log(action.payload[1].response);
+      })
+      .addCase(requestTeams.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+        console.log(action.error.message);
+      })
+      .addCase(requestTeamStatistics.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        console.log("pending");
+      })
+      .addCase(requestTeamStatistics.fulfilled, (state, action) => {
+        state.error = null;
+        state.loading = false;
+        console.log(action.payload.response.lineups);
+      })
+      .addCase(requestTeamStatistics.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+        console.log(action.error.message);
+      })
+      .addCase(requestTeamPlayers.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        console.log("pending");
+      })
+      .addCase(requestTeamPlayers.fulfilled, (state, action) => {
+        state.error = null;
+        state.loading = false;
+        state.selectedPlayersList = action.payload.response;
+        state.filteredPlayersList = action.payload.response;
+        console.log(action.payload.response);
+      })
+      .addCase(requestTeamPlayers.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+        console.log(action.error.message);
       });
   },
 });
@@ -111,4 +233,6 @@ export const {
   selectCountrys,
   filterCountryList,
   setTeamName,
+  filterTeamsList,
+  filterPlayersList,
 } = dashboardSlice.actions;

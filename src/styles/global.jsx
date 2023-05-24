@@ -11,7 +11,10 @@ export default createGlobalStyle`
         --color-year: #caf1ff;
         --imput-width: 150px;
         --imput-height: 35px;
-        --border-radius: 12px
+        --border-radius: 12px;
+        --player-card-width: 20vw;
+        --player-card-height: 20vw;
+        --player-card-font-size: 1.2vw;
 
     }
     @media (min-width: 420px){

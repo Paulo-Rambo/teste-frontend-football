@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { logoutUser } from "../../redux/login/loginSlice";
 import { useNavigate } from "react-router";
 import { HeaderStyle } from "./styles";
+import { LogoutButton } from "../../styles/buttons";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -19,9 +20,9 @@ export default function Header() {
           <h2 className="alignPosition">API-Football</h2>
         </div>
         <div className="alignPosition1">
-          <button className="logoutButton" onClick={() => handleLogout()}>
+          <LogoutButton className="logoutButton" onClick={() => handleLogout()}>
             Logout
-          </button>
+          </LogoutButton>
         </div>
       </div>
     </HeaderStyle>

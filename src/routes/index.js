@@ -6,6 +6,8 @@ import CountrysPage from "../pages/CountrysPage";
 import Index from "../pages/Index";
 import SeasonPage from "../pages/SeasonPage";
 import LeaguesPage from "../pages/LeaguesPage";
+import TeamsPage from "../pages/TeamsPage";
+import PlayersPage from "../pages/PlayersPage";
 
 export default function ManagerRoutes() {
   return (
@@ -17,6 +19,8 @@ export default function ManagerRoutes() {
           <Route path="paises" element={<CountrysPage />} />
           <Route path="seasons" element={<SeasonPage />} />
           <Route path="leagues" element={<LeaguesPage />} />
+          <Route path="teams" element={<TeamsPage />} />
+          <Route path="players" element={<PlayersPage />} />
         </Route>
         <Route path="*" element={<Index />} />
 

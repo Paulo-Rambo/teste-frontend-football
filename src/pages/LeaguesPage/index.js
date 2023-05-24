@@ -27,6 +27,7 @@ export function MainLeague() {
               As temporadas no país {selectedCountry} para o ano {selectedYear}{" "}
               foram:
             </MainTitle>
+            <span>Clique na temporada para ver os times.</span>
           </div>
           <div>
             <LeagueList list={leagueBySeasonAndCountryList} />

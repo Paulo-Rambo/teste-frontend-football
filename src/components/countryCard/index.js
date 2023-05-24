@@ -23,7 +23,7 @@ export default function CountryCard(props) {
         <div>{props.country.code}</div>
       </div>
       <div className="imgBox">
-        <img src={props.country.flag} />
+        <img alt={props.country.name} src={props.country.flag} />
       </div>
     </Card>
   );
