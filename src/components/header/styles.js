@@ -6,18 +6,25 @@ export const HeaderStyle = styled.header`
   align-items: center;
   height: 80px;
   background-color: #e1f6ff;
-  margin-left: 8rem;
-  margin-right: 8rem;
 
-  .alignPosition1 {
-    height: 80px;
+  .headerAlign {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 8rem;
+    margin-right: 8rem;
+  }
+  .alignPosition1 {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    align-items: center;
   }
   .alignPosition {
-    height: 4rem;
+    margin: 0;
+    padding: 0;
+
     font-size: 2rem;
   }
   .logoutButton {

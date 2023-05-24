@@ -22,7 +22,8 @@ export const requestLeagues = createAsyncThunk(
     const { selectedCountry } = dashboard;
     const response = await getLeagues(userKey, selectedCountry, year);
     console.log(response);
-    return response.data;
+    const newData = [year, response.data];
+    return newData;
   }
 );
 
@@ -36,6 +37,7 @@ const dashboardSlice = createSlice({
     seasonList: [],
     selectedCountry: "",
     leagueBySeasonAndCountryList: [],
+    selectedYear: "",
   },
   reducers: {
     setTeamName: (state, action) => {
@@ -69,7 +71,7 @@ const dashboardSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(requestSeasons.pending, (state) => {
-        state.loadingList = true;
+        state.loading = true;
         state.error = null;
         console.log("pending");
       })
@@ -84,15 +86,16 @@ const dashboardSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(requestLeagues.pending, (state) => {
-        state.loadingList = true;
+        state.loading = true;
         state.error = null;
         console.log("pending");
       })
       .addCase(requestLeagues.fulfilled, (state, action) => {
         state.error = null;
         state.loading = false;
-        const newList = action.payload.response.map((item) => item.league);
+        const newList = action.payload[1].response.map((item) => item.league);
         console.log(newList);
+        state.selectedYear = action.payload[0];
         state.leagueBySeasonAndCountryList = newList;
       })
       .addCase(requestLeagues.rejected, (state, action) => {

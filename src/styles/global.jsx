@@ -9,6 +9,9 @@ export default createGlobalStyle`
     :root{
         --color-background: #f7faf9;
         --color-year: #caf1ff;
+        --imput-width: 150px;
+        --imput-height: 35px;
+        --border-radius: 12px
 
     }
     @media (min-width: 420px){

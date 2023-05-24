@@ -14,13 +14,15 @@ export default function Header() {
 
   return (
     <HeaderStyle>
-      <div className="alignPosition1">
-        <div className="alignPosition">API-Football</div>
-      </div>
-      <div className="alignPosition1">
-        <button className="logoutButton" onClick={() => handleLogout()}>
-          Logout
-        </button>
+      <div className="headerAlign">
+        <div className="alignPosition1">
+          <h2 className="alignPosition">API-Football</h2>
+        </div>
+        <div className="alignPosition1">
+          <button className="logoutButton" onClick={() => handleLogout()}>
+            Logout
+          </button>
+        </div>
       </div>
     </HeaderStyle>
   );
