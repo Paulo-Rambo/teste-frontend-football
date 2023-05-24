@@ -1,7 +1,7 @@
 import CountryList from "../../components/countryList";
 import { useSelector, useDispatch } from "react-redux";
 import { filterCountryList } from "../../redux/dashboard/dashBoardSlice";
-import { MainContainer } from "../../styles/mainContainer/styles";
+import { MainContainer } from "../../styles/mainCntainer";
 
 export default function CountrysPage() {
   const dispatch = useDispatch();
@@ -15,12 +15,12 @@ export default function CountrysPage() {
   return (
     <MainContainer>
       <div>
-        <label htmlFor="countrys">Selecione o país</label>
+        <label htmlFor="countrys">Busque o país</label>
         <input
           onChange={(event) => handleListFiltter(event)}
           id="countrys"
           type="text"
-          placeholder="chave..."
+          placeholder="coloque o país..."
         ></input>
       </div>
       <div className="listContainer">

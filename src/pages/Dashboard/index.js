@@ -20,6 +20,7 @@ export default function Dashboard() {
       navigate("/login");
     } else {
       dispatch(actionLogin({ key: client_token }));
+      navigate("/dashboard");
     }
     return;
   }, []);

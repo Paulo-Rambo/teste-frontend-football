@@ -1,4 +1,30 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { getSeasons, getLeagues } from "../../external/axios";
+
+export const requestSeasons = createAsyncThunk(
+  "dashboard/requestSeasons",
+  async (_, { getState }) => {
+    const { login } = getState();
+    const { userKey } = login;
+    console.log(userKey);
+    const response = await getSeasons(userKey);
+
+    return response.data;
+  }
+);
+
+export const requestLeagues = createAsyncThunk(
+  "dashboard/requestLeagues",
+  async (year, { getState }) => {
+    const { login } = getState();
+    const { dashboard } = getState();
+    const { userKey } = login;
+    const { selectedCountry } = dashboard;
+    const response = await getLeagues(userKey, selectedCountry, year);
+    console.log(response);
+    return response.data;
+  }
+);
 
 const dashboardSlice = createSlice({
   name: "dashboard",
@@ -7,8 +33,16 @@ const dashboardSlice = createSlice({
     error: null,
     countryList: [],
     filtredCountryList: [],
+    seasonList: [],
+    selectedCountry: "",
+    leagueBySeasonAndCountryList: [],
   },
   reducers: {
+    setTeamName: (state, action) => {
+      console.log(`team name ${action.payload}`);
+      state.selectedCountry = action.payload;
+      return;
+    },
     setCountryList: (state, action) => {
       let newList = action.payload;
       const newListIndice = action.payload.findIndex(
@@ -32,9 +66,46 @@ const dashboardSlice = createSlice({
       console.log(newList);
     },
   },
-  extraReducers: () => {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(requestSeasons.pending, (state) => {
+        state.loadingList = true;
+        state.error = null;
+        console.log("pending");
+      })
+      .addCase(requestSeasons.fulfilled, (state, action) => {
+        state.error = null;
+        state.loading = false;
+        state.seasonList = action.payload.response;
+        console.log(action.payload.response);
+      })
+      .addCase(requestSeasons.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(requestLeagues.pending, (state) => {
+        state.loadingList = true;
+        state.error = null;
+        console.log("pending");
+      })
+      .addCase(requestLeagues.fulfilled, (state, action) => {
+        state.error = null;
+        state.loading = false;
+        const newList = action.payload.response.map((item) => item.league);
+        console.log(newList);
+        state.leagueBySeasonAndCountryList = newList;
+      })
+      .addCase(requestLeagues.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  },
 });
 
 export default dashboardSlice.reducer;
-export const { setCountryList, selectCountrys, filterCountryList } =
-  dashboardSlice.actions;
+export const {
+  setCountryList,
+  selectCountrys,
+  filterCountryList,
+  setTeamName,
+} = dashboardSlice.actions;

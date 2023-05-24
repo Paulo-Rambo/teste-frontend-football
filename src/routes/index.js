@@ -4,6 +4,8 @@ import NotFoundPage from "../pages/NotFoundPage";
 import Dashboard from "../pages/Dashboard";
 import CountrysPage from "../pages/CountrysPage";
 import Index from "../pages/Index";
+import SeasonPage from "../pages/SeasonPage";
+import LeaguesPage from "../pages/LeaguesPage";
 
 export default function ManagerRoutes() {
   return (
@@ -13,6 +15,8 @@ export default function ManagerRoutes() {
         <Route path="dashboard" element={<Dashboard />}>
           <Route index element={<CountrysPage />} />
           <Route path="paises" element={<CountrysPage />} />
+          <Route path="seasons" element={<SeasonPage />} />
+          <Route path="leagues" element={<LeaguesPage />} />
         </Route>
         <Route path="*" element={<Index />} />
 

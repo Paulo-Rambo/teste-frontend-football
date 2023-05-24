@@ -1,9 +1,11 @@
 import axios from "axios";
 import loginUser from "./login/login";
 import getCountrys from "./login/getCountry";
+import getSeasons from "./getSeasons/season";
+import getLeagues from "./getLeageBySeason/leageBySeason";
 
 export const instance = axios.create({
   baseURL: "https://api-football-v1.p.rapidapi.com/v3",
 });
 
-export { loginUser, getCountrys };
+export { loginUser, getCountrys, getSeasons, getLeagues };

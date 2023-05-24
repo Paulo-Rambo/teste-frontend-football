@@ -1,8 +1,23 @@
 import { Card } from "./styles";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import {
+  requestSeasons,
+  setTeamName,
+} from "../../redux/dashboard/dashBoardSlice";
 
 export default function CountryCard(props) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  function handleSelectCard(name) {
+    dispatch(setTeamName(name));
+    dispatch(requestSeasons());
+    navigate("seasons");
+  }
+
   return (
-    <Card>
+    <Card onClick={() => handleSelectCard(props.country.name)}>
       <div className="nameDiv">
         <div>{props.country.name}</div>
         <div>{props.country.code}</div>

@@ -65,7 +65,6 @@ window.env = {
   "PROMPT": "$P$G",
   "PSModulePath": "C:\\Users\\User\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules",
   "PUBLIC": "C:\\Users\\Public",
-  "RAPIDAPI_KEY": "0e600f35c8msh372e0da1aaf2d97p108884jsn7af32615c0a2",
   "SESSIONNAME": "Console",
   "SystemDrive": "C:",
   "SystemRoot": "C:\\Windows",
