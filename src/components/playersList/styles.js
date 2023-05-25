@@ -3,13 +3,14 @@ import styled from "styled-components";
 export const ListCards = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  width: 100%;
 
   .sectionRow {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
   }
 `;

@@ -1,17 +1,21 @@
 import styled from "styled-components";
 
 export const LeagueCardStyle = styled.div`
-  height: 18vw;
-  width: 26vw;
-  min-height: 160px;
+  height: var(--team-card-height);
+  width: var(--team-card-width);
   min-width: 260px;
-  margin: 25px;
+  min-height: 168px;
+  margin: 1.4vw;
   border: solid 3px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 5px;
-  cursor: pointer;
+  align-items: center;
+  padding: max(1vw, 8px);
+  border-radius: var(--card-radius-1);
+  border: solid 1px;
+  border-color: #d5d5d5;
+  background-color: #f6faff;
   border-radius: var(--card-radius-1);
   border: solid 0.1px;
   border-color: var(--color-border-card-1);
@@ -19,18 +23,25 @@ export const LeagueCardStyle = styled.div`
   -moz-box-shadow: 10px 9px 23px 1px rgba(0, 0, 0, 0.33);
   box-shadow: 10px 9px 23px 1px rgba(0, 0, 0, 0.33);
 
+  .descriptionTeam {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    font-size: max(var(--player-card-font-size), 16px);
+  }
+
   .nameDiv {
-    margin-left: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-size: max(var(--league-card-font-size), 16px);
-    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: max(var(--player-card-font-size), 16px);
   }
   .imgBox {
-    width: 100%;
-    height: 10vw;
+    width: 8vw;
+    height: 8vw;
     min-height: 80px;
+    min-width: 80px;
     padding: 10px;
     display: flex;
     flex-direction: row;
@@ -39,9 +50,16 @@ export const LeagueCardStyle = styled.div`
   }
   img {
     height: 100%;
-    max-height: 100%;
-    max-width: 100%;
-    min-width: 80px;
-    min-height: 80px;
+    width: 100%;
+  }
+  .teamDetails {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .buttonsDiv {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 `;

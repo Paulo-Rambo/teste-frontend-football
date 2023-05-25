@@ -8,6 +8,7 @@ import SeasonPage from "../pages/SeasonPage";
 import LeaguesPage from "../pages/LeaguesPage";
 import TeamsPage from "../pages/TeamsPage";
 import PlayersPage from "../pages/PlayersPage";
+import TeamStatisticPage from "../pages/TeamStatisticsPage";
 
 export default function ManagerRoutes() {
   return (
@@ -21,6 +22,7 @@ export default function ManagerRoutes() {
           <Route path="leagues" element={<LeaguesPage />} />
           <Route path="teams" element={<TeamsPage />} />
           <Route path="players" element={<PlayersPage />} />
+          <Route path="team-statistics" element={<TeamStatisticPage />} />
         </Route>
         <Route path="*" element={<Index />} />
 

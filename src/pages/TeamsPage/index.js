@@ -1,7 +1,7 @@
 import Loading from "../../components/loading";
 import { useSelector } from "react-redux";
 import { MainContainer } from "../../styles/mainCntainer";
-import { MainTitle } from "../../styles/titles";
+import { MainTitle, SpanStyle } from "../../styles/titles";
 import { NotFound } from "../../styles/notFound";
 import TeamsList from "../../components/teamsList";
 import { SearchBoxStyle } from "../../styles/searchBox";
@@ -18,13 +18,13 @@ export function MainTeams() {
   return (
     <>
       {selectedTeamsList?.length === 0 ? (
-        <NotFound>Não foram encontrado ligas para este ano</NotFound>
+        <NotFound>Não foram encontrados times nesta liga</NotFound>
       ) : (
         <>
           <SearchBox />
           <div>
             <MainTitle>Estes são os times da liga:</MainTitle>
-            <span>Clique no time para ver os jogadores.</span>
+            <SpanStyle>Clique no time para ver os jogadores.</SpanStyle>
           </div>
           <div>
             <TeamsList />

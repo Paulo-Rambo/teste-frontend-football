@@ -9,8 +9,13 @@ export const PlayerCardStyle = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 5px;
-  border-radius: 16px;
+  padding: max(1vw, 5px);
+  border-radius: max(var(--card-radius-1), 14px);
+  border: solid 0.1px;
+  border-color: var(--color-border-card-1);
+  -webkit-box-shadow: 10px 9px 23px 1px rgba(0, 0, 0, 0.33);
+  -moz-box-shadow: 10px 9px 23px 1px rgba(0, 0, 0, 0.33);
+  box-shadow: 10px 9px 23px 1px rgba(0, 0, 0, 0.33);
 
   .descriptionTeam {
     display: flex;
@@ -28,8 +33,9 @@ export const PlayerCardStyle = styled.div`
     font-weight: 600;
   }
   .imgBox {
-    width: 9vw;
-    height: 9vw;
+    width: 100%;
+    height: 10vw;
+    min-height: 80px;
     padding: 10px;
     display: flex;
     flex-direction: row;
@@ -37,8 +43,11 @@ export const PlayerCardStyle = styled.div`
     align-items: center;
   }
   img {
+    height: 100%;
     max-height: 100%;
     max-width: 100%;
+    min-width: 80px;
+    min-height: 80px;
   }
   .teamDetails {
     display: flex;

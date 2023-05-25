@@ -4,6 +4,7 @@ import { MainContainer } from "../../styles/mainCntainer";
 import { MainTitle } from "../../styles/titles";
 import { NotFound } from "../../styles/notFound";
 import Loading from "../../components/loading";
+import { SpanStyle } from "../../styles/titles";
 
 export default function LeaguesPage() {
   const { loading } = useSelector((state) => state).dashboard;
@@ -24,10 +25,10 @@ export function MainLeague() {
         <>
           <div>
             <MainTitle>
-              As temporadas no país {selectedCountry} para o ano {selectedYear}{" "}
+              As ligas no país {selectedCountry} para o ano {selectedYear}{" "}
               foram:
             </MainTitle>
-            <span>Clique na temporada para ver os times.</span>
+            <SpanStyle>Clique na liga para ver os times.</SpanStyle>
           </div>
           <div>
             <LeagueList list={leagueBySeasonAndCountryList} />
