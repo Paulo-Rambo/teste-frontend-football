@@ -22,7 +22,7 @@ export default function ManagerRoutes() {
           <Route path="leagues" element={<LeaguesPage />} />
           <Route path="teams" element={<TeamsPage />} />
           <Route path="players" element={<PlayersPage />} />
-          <Route path="team-statistics" element={<TeamStatisticPage />} />
+          <Route path="statistics" element={<TeamStatisticPage />} />
         </Route>
         <Route path="*" element={<Index />} />
 

@@ -2,7 +2,6 @@ import Loading from "../../components/loading";
 import { useSelector } from "react-redux";
 import { MainContainer } from "../../styles/mainCntainer";
 import { MainTitle, SpanStyle } from "../../styles/titles";
-import { NotFound } from "../../styles/notFound";
 import TeamsList from "./teamsList";
 import { SearchBoxStyle } from "../../styles/searchBox";
 import { useDispatch } from "react-redux";

@@ -6,6 +6,7 @@ import {
   getPlayersByTeam,
   getStatistisByTeam,
 } from "../../external/axios";
+import { getBiggerLineup } from "./auxFunctions";
 
 export const requestTeamStatistics = createAsyncThunk(
   "dashboard/requestTeamStatistics",
@@ -20,8 +21,15 @@ export const requestTeamStatistics = createAsyncThunk(
       selectedLeagueId,
       teamId
     );
-    console.log(response.data);
-    return response.data;
+    console.log(response.data.response.lineups);
+    console.log(response.data.response.goals.for.minute);
+    console.log(response.data.response.fixtures);
+    let lineups = response.data.response.lineups;
+    const newLineups = getBiggerLineup(lineups);
+    const goals = response.data.response.goals.for.minute;
+    const fixtures = response.data.response.fixtures;
+
+    return { newLineups, goals, fixtures };
   }
 );
 
@@ -92,6 +100,9 @@ const dashboardSlice = createSlice({
     filteredTeamsList: [],
     selectedPlayersList: [],
     filteredPlayersList: [],
+    lineups: {},
+    goals: {},
+    fixtures: {},
   },
   reducers: {
     filterPlayersList: (state, action) => {
@@ -200,7 +211,11 @@ const dashboardSlice = createSlice({
       .addCase(requestTeamStatistics.fulfilled, (state, action) => {
         state.error = null;
         state.loading = false;
-        console.log(action.payload.response.lineups);
+        console.log(action.payload);
+        state.lineups = action.payload.newLineups;
+        state.goals = action.payload.goals;
+        state.fixtures = action.payload.fixtures;
+        console.log(action.payload);
       })
       .addCase(requestTeamStatistics.rejected, (state, action) => {
         state.loading = false;

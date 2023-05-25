@@ -17,7 +17,7 @@ export default function TeamCard(props) {
       return;
     }
     dispatch(requestTeamStatistics(props.team.id));
-    navigate("/dashboard/players");
+    navigate("/dashboard/statistics");
     console.log(props.team.id);
   }
   return (
