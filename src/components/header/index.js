@@ -20,9 +20,7 @@ export default function Header() {
           <h2 className="alignPosition">API-Football</h2>
         </div>
         <div className="alignPosition1">
-          <LogoutButton className="logoutButton" onClick={() => handleLogout()}>
-            Logout
-          </LogoutButton>
+          <LogoutButton onClick={() => handleLogout()}>Logout</LogoutButton>
         </div>
       </div>
     </HeaderStyle>

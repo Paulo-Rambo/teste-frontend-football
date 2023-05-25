@@ -1,8 +1,8 @@
-import LeagueList from "../../components/leaguesList";
+import LeagueList from "./leaguesList";
 import { useSelector } from "react-redux";
 import { MainContainer } from "../../styles/mainCntainer";
 import { MainTitle } from "../../styles/titles";
-import { NotFound } from "../../styles/notFound";
+import NotFoundComponent from "../../components/notFound";
 import Loading from "../../components/loading";
 import { SpanStyle } from "../../styles/titles";
 
@@ -20,7 +20,7 @@ export function MainLeague() {
   return (
     <>
       {leagueBySeasonAndCountryList?.length === 0 ? (
-        <NotFound>Não foram encontrado ligas para este ano</NotFound>
+        <NotFoundComponent text={"Não foram encontrado ligas para este ano."} />
       ) : (
         <>
           <div>

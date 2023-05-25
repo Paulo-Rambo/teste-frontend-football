@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { MainContainer } from "../../styles/mainCntainer";
 import { MainTitle } from "../../styles/titles";
 import { NotFound } from "../../styles/notFound";
-import TeamStatistic from "../../components/teamsList";
+import TeamStatistic from "./statistics";
 
 export default function TeamStatisticPage() {
   const { loading } = useSelector((state) => state).dashboard;

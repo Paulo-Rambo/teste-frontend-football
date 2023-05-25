@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { MainContainer } from "../../styles/mainCntainer";
-import SeasonList from "../../components/seasonList";
+import SeasonList from "./seasonList";
 import { MainTitle } from "../../styles/titles";
 import Loading from "../../components/loading";
 
@@ -14,13 +14,13 @@ export default function SeasonPage() {
 export function MainSeason() {
   const seasonList = useSelector((state) => state.dashboard.seasonList);
   return (
-    <MainContainer>
+    <>
       <div>
-        <MainTitle>Escolha o ano da temporada</MainTitle>
+        <MainTitle>Escolha o ano da temporada:</MainTitle>
       </div>
       <div className="listContainer">
         {!seasonList ? <></> : <SeasonList list={seasonList} />}
       </div>
-    </MainContainer>
+    </>
   );
 }

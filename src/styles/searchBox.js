@@ -1,22 +1,24 @@
 import styled from "styled-components";
 
 export const SearchBoxStyle = styled.div`
-  margin: 1rem;
+  width: 100%;
+  height: max(80px, 3vw);
+  margin: 1vw;
   display: flex;
-  flex-direction: row;
-
+  justify-content: center;
   align-items: center;
-  width: 300px;
-  height: 50px;
+  font-size: max(2vw, 18px);
   input {
     width: var(--imput-width);
     height: var(--imput-height);
     border-radius: var(--border-radius);
+    padding-left: max(0.5vw, 5px);
+    font-size: max(2vw, 18px);
   }
   input::placeholder {
-    padding-left: 5px;
+    padding-left: max(0.3vw, 5px);
   }
   label {
-    margin-right: 8px;
+    margin-right: max(1vw, 8px);
   }
 `;

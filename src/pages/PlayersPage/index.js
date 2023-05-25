@@ -2,11 +2,11 @@ import Loading from "../../components/loading";
 import { useSelector } from "react-redux";
 import { MainContainer } from "../../styles/mainCntainer";
 import { MainTitle } from "../../styles/titles";
-import { NotFound } from "../../styles/notFound";
+import NotFoundComponent from "../../components/notFound";
 import { SearchBoxStyle } from "../../styles/searchBox";
 import { useDispatch } from "react-redux";
 import { filterPlayersList } from "../../redux/dashboard/dashBoardSlice";
-import PlayersList from "../../components/playersList";
+import PlayersList from "./playersList";
 
 export default function PlayersPage() {
   const { loading } = useSelector((state) => state).dashboard;
@@ -20,7 +20,7 @@ export function MainPlayers() {
   return (
     <>
       {filteredPlayersList?.length === 0 ? (
-        <NotFound>Não foram encontrados os jogadores.</NotFound>
+        <NotFoundComponent text={"Não foram encontrados os jogadores."} />
       ) : (
         <>
           <div>

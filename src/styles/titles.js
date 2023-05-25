@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MainTitle = styled.h2`
-  font-size: max(4vw, 28px);
+  font-size: max(3vw, 26px);
   font-weight: 600;
 `;
 

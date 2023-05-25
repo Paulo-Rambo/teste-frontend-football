@@ -1,9 +1,18 @@
 import styled from "styled-components";
 
 export const RotateImage = styled.div`
-  width: 7rem;
-  height: 7rem;
+  width: 14vw;
+  height: max(22vw, 220px);
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .imgBox {
+    width: max(7vw, 80px);
+    height: max(7vw, 80px);
+  }
   .rotating-image {
     animation: rotate 2s linear infinite;
     max-width: 100%;

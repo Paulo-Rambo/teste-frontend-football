@@ -11,9 +11,9 @@ export default createGlobalStyle`
         --color-year: #caf1ff;
         --color-country: #edfaff;
         --color-border-card-1: #f7f7f7;
-        --imput-width: 150px;
-        --imput-height: 35px;
-        --border-radius: 12px;
+        --imput-width: max(16vw,150px);
+        --imput-height: max(4vw,40px);
+        --border-radius: max(1vw,12px);
         --player-card-width: max(25vw, 260px);
         --player-card-height: max(20vw, 220px);
         --player-card-font-size: max(1.6vw, 16px);
@@ -21,7 +21,7 @@ export default createGlobalStyle`
         --country-card-font-size: 1.8vw;
         --team-card-height: 16vw;
         --team-card-width: 25vw;
-        --card-radius-1:1vw;
+        --card-radius-1:max(2vw, 16px);
 
     }
     @media (min-width: 420px){

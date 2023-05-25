@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { SesionDivStyle } from "./styles";
 import { useDispatch } from "react-redux";
-import { requestLeagues } from "../../redux/dashboard/dashBoardSlice";
+import { requestLeagues } from "../../../redux/dashboard/dashBoardSlice";
 
 export default function SeasonList(props) {
   const navigate = useNavigate();

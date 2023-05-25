@@ -3,10 +3,11 @@ import { useSelector } from "react-redux";
 import { MainContainer } from "../../styles/mainCntainer";
 import { MainTitle, SpanStyle } from "../../styles/titles";
 import { NotFound } from "../../styles/notFound";
-import TeamsList from "../../components/teamsList";
+import TeamsList from "./teamsList";
 import { SearchBoxStyle } from "../../styles/searchBox";
 import { useDispatch } from "react-redux";
 import { filterTeamsList } from "../../redux/dashboard/dashBoardSlice";
+import NotFoundComponent from "../../components/notFound";
 
 export default function TeamsPage() {
   const { loading } = useSelector((state) => state).dashboard;
@@ -18,7 +19,7 @@ export function MainTeams() {
   return (
     <>
       {selectedTeamsList?.length === 0 ? (
-        <NotFound>Não foram encontrados times nesta liga</NotFound>
+        <NotFoundComponent text={"Não foram encontrados times nesta liga"} />
       ) : (
         <>
           <SearchBox />

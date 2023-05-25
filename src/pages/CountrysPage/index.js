@@ -1,4 +1,4 @@
-import CountryList from "../../components/countryList";
+import CountryList from "./countryList";
 import { useSelector, useDispatch } from "react-redux";
 import { filterCountryList } from "../../redux/dashboard/dashBoardSlice";
 import { MainContainer } from "../../styles/mainCntainer";

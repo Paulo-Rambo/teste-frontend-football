@@ -1,11 +1,18 @@
 import styled from "styled-components";
 
 export const LogoutButton = styled.button`
-  border-style: none;
-  padding: 1rem;
-  font-size: 1.4rem;
-  border-radius: 16px;
+  padding: max(1vw, 10px);
+  font-size: max(1.4vw, 22px);
+  border-radius: max(1vw, 16px);
   cursor: pointer;
+  border: solid 2px;
+  border-color: grey;
+  border-top: 0px;
+  border-left: 0px;
+
+  :active {
+    border: solid 0px;
+  }
 `;
 
 export const SelectButton = styled.button`
