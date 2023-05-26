@@ -1,11 +1,18 @@
 import LoginForm from "../../components/forms/loginForm";
+import { MainLoginStyle } from "./styles";
+import { FormTitleBoxStyle } from "../../styles/titles";
 
 export default function LoginPage() {
   return (
     <>
-      <main>
-        <LoginForm />
-      </main>
+      <MainLoginStyle>
+        <div className="loginDivBox">
+          <FormTitleBoxStyle>
+            <h3>API-Football</h3>
+          </FormTitleBoxStyle>
+          <LoginForm />
+        </div>
+      </MainLoginStyle>
     </>
   );
 }

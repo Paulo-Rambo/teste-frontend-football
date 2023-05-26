@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import Cookies from "js-cookie";
+import { FormInputBoxStyle } from "../../../styles/formInputBox";
+import { FormStyle } from "./styles";
+import { LogoutButton } from "../../../styles/buttons";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -37,18 +40,20 @@ export default function LoginForm() {
   });
 
   return (
-    <form onSubmit={handleSubmit(loginAction)}>
-      <div>
-        <label htmlFor="key">Coloque sua chave aqui</label>
-        <input
-          id="key"
-          type="text"
-          placeholder="chave..."
-          {...register("key")}
-        ></input>
-        <span>{errors.key?.message}</span>
+    <FormStyle onSubmit={handleSubmit(loginAction)}>
+      <div className="justifyComponents">
+        <FormInputBoxStyle>
+          <label htmlFor="key">Coloque sua chave aqui</label>
+          <input
+            id="key"
+            type="text"
+            placeholder="chave..."
+            {...register("key")}
+          ></input>
+          <span>{errors.key?.message}</span>
+        </FormInputBoxStyle>
+        <LogoutButton type="submit">Entrar</LogoutButton>
       </div>
-      <button type="submit">Entrar</button>
-    </form>
+    </FormStyle>
   );
 }

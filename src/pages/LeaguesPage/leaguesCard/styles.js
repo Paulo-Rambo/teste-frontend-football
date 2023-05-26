@@ -10,7 +10,7 @@ export const LeagueCardStyle = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 5px;
+  padding: max(0.8vw, 5px);
   cursor: pointer;
   border-radius: var(--card-radius-1);
   border: solid 0.1px;
