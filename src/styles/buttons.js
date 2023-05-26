@@ -19,7 +19,7 @@ export const SelectButton = styled.button`
   border-style: none;
   padding: 0.5vw;
   font-size: max(1.3vw, 15px);
-  border-radius: 1vw;
+  border-radius: max(1vw, 14px);
   margin: 10px;
   cursor: pointer;
   min-height: 35px;

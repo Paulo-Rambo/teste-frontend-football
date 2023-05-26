@@ -12,7 +12,7 @@ export const LeagueCardStyle = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: max(1vw, 8px);
-  border-radius: var(--card-radius-1);
+  border-radius: max(var(--card-radius-1), 16px);
   border: solid 1px;
   border-color: #d5d5d5;
   background-color: #f6faff;
