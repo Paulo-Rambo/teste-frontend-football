@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { loginUser, getCountrys } from "../../external/axios";
+import { getCountrys } from "../../external/axios";
 import Cookies from "js-cookie";
-import { continentsCountry } from "./dataCleaner";
 import { setCountryList } from "../dashboard/dashBoardSlice";
+import { toast } from "react-toastify";
 
 export const actionLogin = createAsyncThunk(
   "login/actionLogin",
@@ -20,12 +20,11 @@ const loginSlice = createSlice({
   initialState: {
     authStatus: false,
     userKey: "",
-    loading: true,
+    loading: false,
     error: null,
   },
   reducers: {
     setUserCookie: (state, action) => {
-      state.userKey = action.payload.key;
       state.authStatus = true;
     },
     logoutUser: (state, action) => {
@@ -37,7 +36,7 @@ const loginSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(actionLogin.pending, (state) => {
-        state.loadingList = true;
+        state.loading = true;
         state.error = null;
         console.log("pending");
       })
@@ -47,11 +46,20 @@ const loginSlice = createSlice({
         state.authStatus = true;
         state.userKey = action.payload.key;
         Cookies.set("api_sports_key", action.payload.key);
+        toast.success("Conectado!", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000,
+          theme: "colored",
+        });
       })
       .addCase(actionLogin.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-        console.log("Não foi possível logar");
+        toast.error("Chave inválida!", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000,
+          theme: "colored",
+        });
       });
   },
 });

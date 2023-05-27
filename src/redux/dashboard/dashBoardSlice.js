@@ -95,34 +95,17 @@ const dashboardSlice = createSlice({
     selectedCountry: "",
     leagueBySeasonAndCountryList: [],
     selectedYear: "",
-    selectedLeagueId: "",
     selectedTeamsList: [],
     filteredTeamsList: [],
     selectedPlayersList: [],
     filteredPlayersList: [],
+    selectedLeagueId: "",
     lineups: {},
     goals: {},
     fixtures: {},
+    notFound: false,
   },
   reducers: {
-    filterPlayersList: (state, action) => {
-      const searchValue = action.payload;
-      const list = state.selectedPlayersList;
-      const newList = list.filter((obj) =>
-        obj.player.name.toLowerCase().startsWith(searchValue.toLowerCase())
-      );
-      state.filteredPlayersList = newList;
-      console.log(newList);
-    },
-    filterTeamsList: (state, action) => {
-      const searchValue = action.payload;
-      const list = state.selectedTeamsList;
-      const newList = list.filter((team) =>
-        team.team.name.toLowerCase().startsWith(searchValue.toLowerCase())
-      );
-      state.filteredTeamsList = newList;
-      console.log(newList);
-    },
     setTeamName: (state, action) => {
       console.log(`team name ${action.payload}`);
       state.selectedCountry = action.payload;
@@ -139,7 +122,6 @@ const dashboardSlice = createSlice({
       state.countryList = newList;
       state.filtredCountryList = newList;
       console.log("setando country list");
-      console.log(action.payload);
     },
     filterCountryList: (state, action) => {
       const searchValue = action.payload;
@@ -148,6 +130,24 @@ const dashboardSlice = createSlice({
         country.name.toLowerCase().startsWith(searchValue.toLowerCase())
       );
       state.filtredCountryList = newList;
+      console.log(newList);
+    },
+    filterTeamsList: (state, action) => {
+      const searchValue = action.payload;
+      const list = state.selectedTeamsList;
+      const newList = list.filter((team) =>
+        team.team.name.toLowerCase().startsWith(searchValue.toLowerCase())
+      );
+      state.filteredTeamsList = newList;
+      console.log(newList);
+    },
+    filterPlayersList: (state, action) => {
+      const searchValue = action.payload;
+      const list = state.selectedPlayersList;
+      const newList = list.filter((obj) =>
+        obj.player.name.toLowerCase().startsWith(searchValue.toLowerCase())
+      );
+      state.filteredPlayersList = newList;
       console.log(newList);
     },
   },
@@ -230,6 +230,11 @@ const dashboardSlice = createSlice({
       .addCase(requestTeamPlayers.fulfilled, (state, action) => {
         state.error = null;
         state.loading = false;
+        if (action.payload.response.length === 0) {
+          state.notFound = true;
+        } else {
+          state.notFound = false;
+        }
         state.selectedPlayersList = action.payload.response;
         state.filteredPlayersList = action.payload.response;
         console.log(action.payload.response);

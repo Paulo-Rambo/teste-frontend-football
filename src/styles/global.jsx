@@ -11,6 +11,7 @@ export default createGlobalStyle`
         --color-year: #caf1ff;
         --color-country: #edfaff;
         --color-border-card-1: #f7f7f7;
+        --color-1:#e4e4e4;
         --imput-width: max(16vw,150px);
         --imput-height: max(4vw,40px);
         --imput-width2: max(1vw,250px);

@@ -3,6 +3,7 @@ import { logoutUser } from "../../redux/login/loginSlice";
 import { useNavigate } from "react-router";
 import { HeaderStyle } from "./styles";
 import { LogoutButton } from "../../styles/buttons";
+import { toast } from "react-toastify";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -11,6 +12,11 @@ export default function Header() {
   function handleLogout() {
     dispatch(logoutUser());
     navigate("/login");
+    toast.success("Você saiu!", {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 3000,
+      theme: "colored",
+    });
   }
 
   return (

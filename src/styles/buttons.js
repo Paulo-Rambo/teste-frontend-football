@@ -5,7 +5,7 @@ export const LogoutButton = styled.button`
   font-size: max(1.4vw, 22px);
   border-radius: max(1vw, 16px);
   cursor: pointer;
-  border: solid 2px;
+  border: solid max(2px, 0.2vw);
   border-color: grey;
   border-top: 0px;
   border-left: 0px;

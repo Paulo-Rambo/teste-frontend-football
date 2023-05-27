@@ -14,5 +14,11 @@ export const FormInputBoxStyle = styled.div`
   input {
     font-size: max(2vw, 18px);
     width: 100%;
+    border: solid max(1px, 0.1vw);
+  }
+  .spanError {
+    color: red;
+    font-size: max(14px, 1.4vw);
+    font-weight: 600;
   }
 `;

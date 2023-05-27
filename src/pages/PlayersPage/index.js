@@ -16,10 +16,10 @@ export default function PlayersPage() {
 }
 
 export function MainPlayers() {
-  const { filteredPlayersList } = useSelector((state) => state).dashboard;
+  const { notFound } = useSelector((state) => state).dashboard;
   return (
     <>
-      {filteredPlayersList?.length === 0 ? (
+      {notFound ? (
         <NotFoundComponent text={"Não foram encontrados os jogadores."} />
       ) : (
         <>

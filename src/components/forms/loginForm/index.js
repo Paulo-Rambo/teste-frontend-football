@@ -23,12 +23,12 @@ export default function LoginForm() {
 
   useEffect(() => {
     const client_token = Cookies.get("api_sports_key");
-    if (client_token) {
-      navigate("/dashboard");
+    if (client_token && !authStatus) {
+      loginAction({ key: client_token });
     }
   }, []);
 
-  function loginAction(data) {
+  async function loginAction(data) {
     dispatch(actionLogin(data));
   }
   const {
@@ -50,9 +50,11 @@ export default function LoginForm() {
             placeholder="chave..."
             {...register("key")}
           ></input>
-          <span>{errors.key?.message}</span>
+          <span className="spanError">{errors.key?.message}</span>
         </FormInputBoxStyle>
-        <LogoutButton type="submit">Entrar</LogoutButton>
+        <div className="buttonDiv">
+          <LogoutButton type="submit">Entrar</LogoutButton>
+        </div>
       </div>
     </FormStyle>
   );
