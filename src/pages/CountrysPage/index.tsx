@@ -1,12 +1,14 @@
+import { ChangeEvent } from "react";
 import CountryList from "./countryList";
 import { useSelector, useDispatch } from "react-redux";
 import { filterCountryList } from "../../redux/dashboard/dashBoardSlice";
 import { MainContainer } from "../../styles/mainCntainer";
 import { SearchBoxStyle } from "../../styles/searchBox";
 import Loading from "../../components/loading";
+import { RootState } from "../../redux/store";
 
 export default function CountrysPage() {
-  const { loading } = useSelector((state) => state).login;
+  const { loading } = useSelector((state: RootState) => state).login;
   return (
     <MainContainer>{loading ? <Loading /> : <CountryMain />}</MainContainer>
   );
@@ -14,9 +16,9 @@ export default function CountrysPage() {
 export function CountryMain() {
   const dispatch = useDispatch();
   const filtredCountryList = useSelector(
-    (state) => state.dashboard.filtredCountryList
+    (state: RootState) => state.dashboard.filtredCountryList
   );
-  function handleListFiltter(event) {
+  function handleListFiltter(event: ChangeEvent<HTMLInputElement>) {
     const val = event.target.value;
     dispatch(filterCountryList(val));
   }

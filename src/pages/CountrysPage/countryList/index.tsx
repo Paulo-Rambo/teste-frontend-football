@@ -1,7 +1,12 @@
 import CountryCard from "../countryCard";
 import { ListCards } from "./styles";
+import { ICountry } from "../../../redux/dashboard/dashBoardSlice";
 
-export default function CountryList(props) {
+interface IProps {
+  list: ICountry[];
+}
+
+export default function CountryList(props: IProps) {
   const items = props?.list;
 
   return (

@@ -2,9 +2,10 @@ import TeamCard from "../teamCard";
 import { ListTeamCardsStyle } from "./styles";
 import { useSelector } from "react-redux";
 import React from "react";
+import { RootState } from "../../../redux/store";
 
 export default function TeamsList() {
-  const { filteredTeamsList } = useSelector((state) => state).teams;
+  const { filteredTeamsList } = useSelector((state: RootState) => state).teams;
   const items = filteredTeamsList;
 
   return (

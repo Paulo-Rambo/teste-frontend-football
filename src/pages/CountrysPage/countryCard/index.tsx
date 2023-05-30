@@ -3,12 +3,18 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { requestSeasons } from "../../../redux/season/seasonsSlice";
 import { setTeamName } from "../../../redux/dashboard/dashBoardSlice";
+import { AppDispatch } from "../../../redux/store";
+import { ICountry } from "../../../redux/dashboard/dashBoardSlice";
 
-export default function CountryCard(props) {
+interface ICountryProps {
+  country: ICountry;
+}
+
+export default function CountryCard(props: ICountryProps) {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
-  function handleSelectCard(name) {
+  function handleSelectCard(name: string) {
     dispatch(setTeamName(name));
     dispatch(requestSeasons());
     navigate("seasons");

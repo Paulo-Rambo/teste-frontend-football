@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
@@ -6,5 +7,5 @@ export default function Index() {
   useEffect(() => {
     navigate("/dashboard");
   }, []);
-  return;
+  return <></>;
 }

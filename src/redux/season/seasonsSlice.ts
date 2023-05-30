@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getSeasons } from "../../external/axios";
+import RootState from "../../interfaces/types";
 
 export const requestSeasons = createAsyncThunk(
   "seasons/requestSeasons",
   async (_, { getState }) => {
-    const { login } = getState();
+    const { login }: RootState = getState() as RootState;
     const { userKey } = login;
     console.log(userKey);
     const response = await getSeasons(userKey);
@@ -13,13 +14,21 @@ export const requestSeasons = createAsyncThunk(
   }
 );
 
+export interface ISeasonState {
+  loading: boolean;
+  error: string | null | undefined;
+  seasonList: number[];
+}
+
+const initialState: ISeasonState = {
+  loading: true,
+  error: null,
+  seasonList: [],
+};
+
 const seasonsSlice = createSlice({
   name: "seasons",
-  initialState: {
-    loading: true,
-    error: null,
-    seasonList: [],
-  },
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder

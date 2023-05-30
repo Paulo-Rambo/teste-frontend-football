@@ -1,13 +1,18 @@
 import LeagueCard from "../leaguesCard";
 import { ListLeagueCardsStyle } from "./styles";
+import { ILeague } from "../../../redux/leagues/leaguesSlice";
 
-export default function LeagueList(props) {
+interface IProps {
+  list: ILeague[];
+}
+
+export default function LeagueList(props: IProps) {
   const items = props?.list;
 
   return (
     <ListLeagueCardsStyle>
       <div className="sectionRow">
-        {items?.map((item, index) => (
+        {items?.map((item: ILeague) => (
           <LeagueCard key={item.id} league={item} />
         ))}
       </div>

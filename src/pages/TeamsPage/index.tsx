@@ -7,14 +7,16 @@ import { SearchBoxStyle } from "../../styles/searchBox";
 import { useDispatch } from "react-redux";
 import { filterTeamsList } from "../../redux/teams/teamsSlice";
 import NotFoundComponent from "../../components/notFound";
+import { RootState } from "../../redux/store";
+import { ChangeEvent } from "react";
 
 export default function TeamsPage() {
-  const { loading } = useSelector((state) => state).teams;
+  const { loading } = useSelector((state: RootState) => state).teams;
   return <MainContainer>{loading ? <Loading /> : <MainTeams />}</MainContainer>;
 }
 
 export function MainTeams() {
-  const { selectedTeamsList } = useSelector((state) => state).teams;
+  const { selectedTeamsList } = useSelector((state: RootState) => state).teams;
   return (
     <>
       {selectedTeamsList?.length === 0 ? (
@@ -37,7 +39,7 @@ export function MainTeams() {
 
 export function SearchBox() {
   const dispatch = useDispatch();
-  function handleListFiltter(event) {
+  function handleListFiltter(event: ChangeEvent<HTMLInputElement>) {
     const val = event.target.value;
     dispatch(filterTeamsList(val));
   }

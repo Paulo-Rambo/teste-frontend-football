@@ -1,11 +1,39 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getPlayersByTeam } from "../../external/axios";
+import { RootState } from "../store";
+
+interface IPlayer {
+  player: IPlayerData;
+}
+
+export interface IPlayerData {
+  id: number | null;
+  name: string;
+  age: number | null;
+  nationality: string | null;
+  photo: string;
+}
+
+export interface IPlayerState {
+  loading: boolean;
+  error: string | null | undefined;
+  selectedPlayersList: IPlayer[];
+  filteredPlayersList: IPlayer[];
+  notFound: boolean;
+}
+
+const initialState: IPlayerState = {
+  loading: true,
+  error: null,
+  selectedPlayersList: [],
+  filteredPlayersList: [],
+  notFound: false,
+};
 
 export const requestTeamPlayers = createAsyncThunk(
   "players/requestTeamPlayers",
-  async (teamId, { getState }) => {
-    const { login } = getState();
-    const { leagues } = getState();
+  async (teamId: number, { getState }) => {
+    const { login, leagues }: RootState = getState() as RootState;
     const { userKey } = login;
     const { selectedYear } = leagues;
     const response = await getPlayersByTeam(userKey, teamId, selectedYear);
@@ -15,20 +43,16 @@ export const requestTeamPlayers = createAsyncThunk(
 
 const playersSlice = createSlice({
   name: "players",
-  initialState: {
-    loading: true,
-    error: null,
-    selectedPlayersList: [],
-    filteredPlayersList: [],
-    notFound: false,
-  },
+  initialState,
   reducers: {
     filterPlayersList: (state, action) => {
       const searchValue = action.payload;
       const list = state.selectedPlayersList;
-      const newList = list.filter((obj) =>
-        obj.player.name.toLowerCase().startsWith(searchValue.toLowerCase())
-      );
+      const newList = list.filter((obj: IPlayer) => {
+        if (obj.player.name) {
+          obj.player.name.toLowerCase().startsWith(searchValue.toLowerCase());
+        }
+      });
       state.filteredPlayersList = newList;
       console.log(newList);
     },

@@ -6,23 +6,34 @@ import { toast } from "react-toastify";
 
 export const actionLogin = createAsyncThunk(
   "login/actionLogin",
-  async (data, { dispatch }) => {
-    console.log(data);
+  async (data: IData, { dispatch }) => {
     const response = await getCountrys(data.key);
-    console.log(response.data.response);
     dispatch(setCountryList(response.data.response));
     return { key: data.key };
   }
 );
 
+interface IData {
+  key: string;
+}
+
+export interface ILoginState {
+  authStatus: boolean;
+  userKey: string;
+  loading: boolean;
+  error: string | null | undefined;
+}
+
+const initialState: ILoginState = {
+  authStatus: false,
+  userKey: "",
+  loading: false,
+  error: null,
+};
+
 const loginSlice = createSlice({
   name: "login",
-  initialState: {
-    authStatus: false,
-    userKey: "",
-    loading: false,
-    error: null,
-  },
+  initialState,
   reducers: {
     setUserCookie: (state, action) => {
       state.authStatus = true;

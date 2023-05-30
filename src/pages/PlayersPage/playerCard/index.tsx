@@ -1,6 +1,11 @@
 import { PlayerCardStyle } from "./styles";
+import { IPlayerData } from "../../../redux/players/playersSlice";
 
-export default function PlayerCard(props) {
+interface IProps {
+  obj: IPlayerData;
+}
+
+export default function PlayerCard(props: IProps) {
   return (
     <PlayerCardStyle>
       <div className="teamDetails">

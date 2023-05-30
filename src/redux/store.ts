@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import loginReducer from "./login/loginSlice";
-//import dashboardReducer from "./dashboard/dashBoardSlice";
 import dashboardReducer from "./dashboard/dashBoardSlice";
 import teamsReducer from "./teams/teamsSlice";
 import statisticsReducer from "./statistics/statisticsSlice";
@@ -21,3 +20,5 @@ const store = configureStore({
 });
 
 export default store;
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;

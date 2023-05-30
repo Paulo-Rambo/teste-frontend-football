@@ -2,11 +2,16 @@ import { useNavigate } from "react-router";
 import { SesionDivStyle } from "./styles";
 import { useDispatch } from "react-redux";
 import { requestLeagues } from "../../../redux/leagues/leaguesSlice";
+import { AppDispatch } from "../../../redux/store";
 
-export default function SeasonList(props) {
+interface IProps {
+  list: number[];
+}
+
+export default function SeasonList(props: IProps) {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  function handleSelectSeson(item) {
+  const dispatch = useDispatch<AppDispatch>();
+  function handleSelectSeson(item: number) {
     const itemStr = `${item}`;
     dispatch(requestLeagues(itemStr));
     console.log(itemStr);

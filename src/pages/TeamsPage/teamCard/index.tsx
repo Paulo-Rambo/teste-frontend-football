@@ -4,11 +4,18 @@ import { SelectButton } from "../../../styles/buttons";
 import { requestTeamPlayers } from "../../../redux/players/playersSlice";
 import { requestTeamStatistics } from "../../../redux/statistics/statisticsSlice";
 import { useNavigate } from "react-router";
+import { AppDispatch } from "../../../redux/store";
+import { ITeam } from "../../../redux/teams/teamsSlice";
 
-export default function TeamCard(props) {
+interface IProps {
+  key: number;
+  team: ITeam;
+}
+
+export default function TeamCard(props: IProps) {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  function handleSelectTeamCard(name) {
+  const dispatch = useDispatch<AppDispatch>();
+  function handleSelectTeamCard(name: string) {
     if (name === "jogadores") {
       dispatch(requestTeamPlayers(props.team.id));
       navigate("/dashboard/players");

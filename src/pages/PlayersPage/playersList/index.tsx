@@ -1,8 +1,12 @@
 import { ListCards } from "./styles";
 import { useSelector } from "react-redux";
 import PlayerCard from "../playerCard";
+import RootState from "../../../interfaces/types";
+
 export default function PlayersList() {
-  const { filteredPlayersList } = useSelector((state) => state).players;
+  const { filteredPlayersList } = useSelector(
+    (state: RootState) => state
+  ).players;
   const items = filteredPlayersList;
   return (
     <ListCards>

@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import Loading from "../../components/loading";
 import { useSelector } from "react-redux";
 import { MainContainer } from "../../styles/mainCntainer";
@@ -7,16 +8,17 @@ import { SearchBoxStyle } from "../../styles/searchBox";
 import { useDispatch } from "react-redux";
 import { filterPlayersList } from "../../redux/players/playersSlice";
 import PlayersList from "./playersList";
+import { RootState } from "../../redux/store";
 
 export default function PlayersPage() {
-  const { loading } = useSelector((state) => state).players;
+  const { loading } = useSelector((state: RootState) => state).players;
   return (
     <MainContainer>{loading ? <Loading /> : <MainPlayers />}</MainContainer>
   );
 }
 
 export function MainPlayers() {
-  const { notFound } = useSelector((state) => state).players;
+  const { notFound } = useSelector((state: RootState) => state).players;
   return (
     <>
       {notFound ? (
@@ -38,7 +40,7 @@ export function MainPlayers() {
 
 export function SearchBox() {
   const dispatch = useDispatch();
-  function handleListFiltter(event) {
+  function handleListFiltter(event: ChangeEvent<HTMLInputElement>) {
     const val = event.target.value;
     dispatch(filterPlayersList(val));
   }

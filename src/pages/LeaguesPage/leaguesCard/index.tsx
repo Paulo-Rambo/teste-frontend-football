@@ -1,11 +1,19 @@
+import React from "react";
 import { LeagueCardStyle } from "./styles";
 import { useDispatch } from "react-redux";
 import { requestTeams } from "../../../redux/teams/teamsSlice";
 import { useNavigate } from "react-router";
+import { AppDispatch } from "../../../redux/store";
+import { ILeague } from "../../../redux/leagues/leaguesSlice";
 
-export default function LeagueCard(props) {
+interface IProps {
+  key: number;
+  league: ILeague;
+}
+
+export default function LeagueCard(props: IProps) {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   function handleSelectLeagueCard() {
     console.log(props.league.id);
     dispatch(requestTeams(props.league.id));
