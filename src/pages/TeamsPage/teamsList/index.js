@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import React from "react";
 
 export default function TeamsList() {
-  const { filteredTeamsList } = useSelector((state) => state).dashboard;
+  const { filteredTeamsList } = useSelector((state) => state).teams;
   const items = filteredTeamsList;
 
   return (

@@ -1,10 +1,8 @@
 import { Card } from "./styles";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import {
-  requestSeasons,
-  setTeamName,
-} from "../../../redux/dashboard/dashBoardSlice";
+import { requestSeasons } from "../../../redux/season/seasonsSlice";
+import { setTeamName } from "../../../redux/dashboard/dashBoardSlice";
 
 export default function CountryCard(props) {
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import { TableStyle } from "../styles";
 import { useSelector } from "react-redux";
 
 export default function ScoreStatistics() {
-  const { fixtures } = useSelector((state) => state).dashboard;
+  const { fixtures } = useSelector((state) => state).statistics;
   return (
     <TableStyle>
       <thead>

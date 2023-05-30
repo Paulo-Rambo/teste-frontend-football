@@ -5,9 +5,9 @@ export const requestTeamPlayers = createAsyncThunk(
   "players/requestTeamPlayers",
   async (teamId, { getState }) => {
     const { login } = getState();
-    const { dashboard } = getState();
+    const { leagues } = getState();
     const { userKey } = login;
-    const { selectedYear } = dashboard;
+    const { selectedYear } = leagues;
     const response = await getPlayersByTeam(userKey, teamId, selectedYear);
     return response.data;
   }
@@ -20,6 +20,7 @@ const playersSlice = createSlice({
     error: null,
     selectedPlayersList: [],
     filteredPlayersList: [],
+    notFound: false,
   },
   reducers: {
     filterPlayersList: (state, action) => {
@@ -42,6 +43,11 @@ const playersSlice = createSlice({
       .addCase(requestTeamPlayers.fulfilled, (state, action) => {
         state.error = null;
         state.loading = false;
+        if (action.payload.response.length === 0) {
+          state.notFound = true;
+        } else {
+          state.notFound = false;
+        }
         state.selectedPlayersList = action.payload.response;
         state.filteredPlayersList = action.payload.response;
         console.log(action.payload.response);

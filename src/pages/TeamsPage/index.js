@@ -5,16 +5,16 @@ import { MainTitle, SpanStyle } from "../../styles/titles";
 import TeamsList from "./teamsList";
 import { SearchBoxStyle } from "../../styles/searchBox";
 import { useDispatch } from "react-redux";
-import { filterTeamsList } from "../../redux/dashboard/dashBoardSlice";
+import { filterTeamsList } from "../../redux/teams/teamsSlice";
 import NotFoundComponent from "../../components/notFound";
 
 export default function TeamsPage() {
-  const { loading } = useSelector((state) => state).dashboard;
+  const { loading } = useSelector((state) => state).teams;
   return <MainContainer>{loading ? <Loading /> : <MainTeams />}</MainContainer>;
 }
 
 export function MainTeams() {
-  const { selectedTeamsList } = useSelector((state) => state).dashboard;
+  const { selectedTeamsList } = useSelector((state) => state).teams;
   return (
     <>
       {selectedTeamsList?.length === 0 ? (

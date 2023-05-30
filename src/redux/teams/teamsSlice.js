@@ -5,9 +5,9 @@ export const requestTeams = createAsyncThunk(
   "teams/requestTeams",
   async (leagueId, { getState }) => {
     const { login } = getState();
-    const { dashboard } = getState();
+    const { leagues } = getState();
     const { userKey } = login;
-    const { selectedYear } = dashboard;
+    const { selectedYear } = leagues;
     const response = await getTeamsByLeague(userKey, selectedYear, leagueId);
     const newData = [leagueId, response.data];
     return newData;
@@ -21,6 +21,7 @@ const teamsSlice = createSlice({
     error: null,
     selectedTeamsList: [],
     filteredTeamsList: [],
+    selectedLeagueId: "",
   },
   reducers: {
     filterTeamsList: (state, action) => {

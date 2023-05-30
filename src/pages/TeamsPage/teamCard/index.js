@@ -1,10 +1,8 @@
 import { LeagueCardStyle } from "./styles";
 import { useDispatch } from "react-redux";
 import { SelectButton } from "../../../styles/buttons";
-import {
-  requestTeamPlayers,
-  requestTeamStatistics,
-} from "../../../redux/dashboard/dashBoardSlice";
+import { requestTeamPlayers } from "../../../redux/players/playersSlice";
+import { requestTeamStatistics } from "../../../redux/statistics/statisticsSlice";
 import { useNavigate } from "react-router";
 
 export default function TeamCard(props) {

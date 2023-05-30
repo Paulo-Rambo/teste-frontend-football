@@ -2,7 +2,7 @@ import { GraphicStyle, GraphicBox } from "../styles";
 import { useSelector } from "react-redux";
 
 export default function GoalsGraphic() {
-  const { goals } = useSelector((state) => state).dashboard;
+  const { goals } = useSelector((state) => state).statistics;
 
   const renderGraphic = () => {
     return Object.keys(goals).map((intervalo) => {

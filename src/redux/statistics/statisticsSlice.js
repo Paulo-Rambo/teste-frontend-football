@@ -1,13 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getStatistisByTeam } from "../../external/axios";
+import { getBiggerLineup } from "../auxFunctions";
 
 export const requestTeamStatistics = createAsyncThunk(
   "statistics/requestTeamStatistics",
   async (teamId, { getState }) => {
     const { login } = getState();
-    const { dashboard } = getState();
+    const { leagues } = getState();
+    const { teams } = getState();
     const { userKey } = login;
-    const { selectedYear, selectedLeagueId } = dashboard;
+    const { selectedYear } = leagues;
+    const { selectedLeagueId } = teams;
+
     const response = await getStatistisByTeam(
       userKey,
       selectedYear,

@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { FormationDivBox } from "../styles";
 
 export default function FormationStatistics() {
-  const { lineups } = useSelector((state) => state).dashboard;
+  const { lineups } = useSelector((state) => state).statistics;
   return (
     <FormationDivBox>
       <h3 className="formationTitle">Formação mais utilizada na temporada:</h3>

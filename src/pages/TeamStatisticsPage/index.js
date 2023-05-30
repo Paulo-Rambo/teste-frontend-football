@@ -6,7 +6,7 @@ import TeamStatistic from "./statistics";
 import NotFoundComponent from "../../components/notFound";
 
 export default function TeamStatisticPage() {
-  const { loading } = useSelector((state) => state).dashboard;
+  const { loading } = useSelector((state) => state).statistics;
   return (
     <MainContainer>{loading ? <Loading /> : <MainStatistics />}</MainContainer>
   );

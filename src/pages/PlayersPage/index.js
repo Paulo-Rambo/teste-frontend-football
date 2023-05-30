@@ -5,18 +5,18 @@ import { MainTitle } from "../../styles/titles";
 import NotFoundComponent from "../../components/notFound";
 import { SearchBoxStyle } from "../../styles/searchBox";
 import { useDispatch } from "react-redux";
-import { filterPlayersList } from "../../redux/dashboard/dashBoardSlice";
+import { filterPlayersList } from "../../redux/players/playersSlice";
 import PlayersList from "./playersList";
 
 export default function PlayersPage() {
-  const { loading } = useSelector((state) => state).dashboard;
+  const { loading } = useSelector((state) => state).players;
   return (
     <MainContainer>{loading ? <Loading /> : <MainPlayers />}</MainContainer>
   );
 }
 
 export function MainPlayers() {
-  const { notFound } = useSelector((state) => state).dashboard;
+  const { notFound } = useSelector((state) => state).players;
   return (
     <>
       {notFound ? (

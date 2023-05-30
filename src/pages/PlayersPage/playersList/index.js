@@ -2,7 +2,7 @@ import { ListCards } from "./styles";
 import { useSelector } from "react-redux";
 import PlayerCard from "../playerCard";
 export default function PlayersList() {
-  const { filteredPlayersList } = useSelector((state) => state).dashboard;
+  const { filteredPlayersList } = useSelector((state) => state).players;
   const items = filteredPlayersList;
   return (
     <ListCards>

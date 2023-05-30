@@ -7,15 +7,17 @@ import Loading from "../../components/loading";
 import { SpanStyle } from "../../styles/titles";
 
 export default function LeaguesPage() {
-  const { loading } = useSelector((state) => state).dashboard;
+  const { loading } = useSelector((state) => state).leagues;
   return (
     <MainContainer>{loading ? <Loading /> : <MainLeague />}</MainContainer>
   );
 }
 
 export function MainLeague() {
-  const { leagueBySeasonAndCountryList, selectedCountry, selectedYear } =
-    useSelector((state) => state).dashboard;
+  const { leagueBySeasonAndCountryList, selectedYear } = useSelector(
+    (state) => state
+  ).leagues;
+  const { selectedCountry } = useSelector((state) => state).dashboard;
   console.log(leagueBySeasonAndCountryList);
   return (
     <>
