@@ -28,7 +28,7 @@ export default function LoginForm() {
           <label htmlFor="key">Coloque sua chave aqui</label>
           <input
             id="key"
-            type="text"
+            type="password"
             placeholder="chave..."
             {...register("key")}
           ></input>
