@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "entrevista_futibolistica",
   "version": "0.1.0",
   "private": true,
@@ -24,6 +25,11 @@
     "redux": "^4.2.1",
     "web-vitals": "^2.1.4",
     "yup": "^1.1.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   },
   "scripts": {
     "start": "react-dotenv && react-scripts start",
@@ -52,6 +58,7 @@
   "devDependencies": {
     "@types/js-cookie": "^3.0.3",
     "@types/styled-components": "^5.1.26",
+    "jest": "^27.5.1",
     "styled-components": "^5.3.10",
     "typescript": "^4.5.4"
   }
