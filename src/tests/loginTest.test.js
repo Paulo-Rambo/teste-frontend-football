@@ -7,26 +7,50 @@ import { waitFor } from "@testing-library/react";
 import store from "../redux/store";
 require("dotenv").config({ path: ".env" });
 
-test("realiza o login com sucesso", async () => {
-  console.log(process.env.RAPIDAPI_KEY);
-  // Renderize o componente de login
-  render(
-    <Provider store={store}>
-      <ToastContainer />
-      <MemoryRouter>{<LoginForm />}</MemoryRouter>
-    </Provider>
-  );
-  // Encontre os elementos de input e o botão de login
-  const keyInput = screen.getByLabelText("Coloque sua chave aqui");
-  const loginButton = screen.getByText("Entrar");
-  // Preencha os campos de input
-  fireEvent.change(keyInput, {
-    target: { value: process.env.RAPIDAPI_KEY },
+describe("testa se o login", () => {
+  test("realiza o login com sucesso", async () => {
+    // Renderize o componente de login
+    render(
+      <Provider store={store}>
+        <ToastContainer />
+        <MemoryRouter>{<LoginForm />}</MemoryRouter>
+      </Provider>
+    );
+    // Encontre os elementos de input e o botão de login
+    const keyInput = screen.getByLabelText("Coloque sua chave aqui");
+    const loginButton = screen.getByText("Entrar");
+    // Preencha os campos de input
+    fireEvent.change(keyInput, {
+      target: { value: process.env.RAPIDAPI_KEY },
+    });
+    // Clique no botão de login
+    fireEvent.submit(loginButton);
+    waitFor(() => {
+      const reduxState = store.getState();
+      expect(reduxState.login.authStatus).toEqual(true);
+    });
   });
-  // Clique no botão de login
-  fireEvent.submit(loginButton);
-  waitFor(() => {
-    const reduxState = store.getState();
-    expect(reduxState.login.authStatus).toEqual(true);
+  test("usuario com key inválida", async () => {
+    // Renderize o componente de login
+    render(
+      <Provider store={store}>
+        <ToastContainer />
+        <MemoryRouter>{<LoginForm />}</MemoryRouter>
+      </Provider>
+    );
+    // Encontre os elementos de input e o botão de login
+    const keyInput = screen.getByLabelText("Coloque sua chave aqui");
+    const loginButton = screen.getByText("Entrar");
+    // Preencha os campos de input
+    const keyValue = "asdafdsfdfg342342fsg";
+    fireEvent.change(keyInput, {
+      target: { value: keyValue },
+    });
+    // Clique no botão de login
+    fireEvent.submit(loginButton);
+    waitFor(() => {
+      const reduxState = store.getState();
+      expect(reduxState.login.authStatus).toEqual(false);
+    });
   });
 });

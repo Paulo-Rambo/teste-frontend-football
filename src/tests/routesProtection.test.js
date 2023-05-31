@@ -58,6 +58,7 @@ describe("testa se as rotas estão protegidas de usuarios não logados", () => {
     );
     waitFor(() => {
       expect(screen.getByText("Coloque sua chave aqui")).toBeInTheDocument();
+      expect(history.location.pathname).toBe("/login");
     });
   });
 });
