@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const GraphicsDiv = styled.div`
   box-sizing: border-box;
   width: 80vw;
+  margin-bottom: 10vw;
 `;
 
 export const TableStyle = styled.table`

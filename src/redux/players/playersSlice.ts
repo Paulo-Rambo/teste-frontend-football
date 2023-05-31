@@ -50,7 +50,9 @@ const playersSlice = createSlice({
       const list = state.selectedPlayersList;
       const newList = list.filter((obj: IPlayer) => {
         if (obj.player.name) {
-          obj.player.name.toLowerCase().startsWith(searchValue.toLowerCase());
+          return obj.player.name
+            .toLowerCase()
+            .startsWith(searchValue.toLowerCase());
         }
       });
       state.filteredPlayersList = newList;

@@ -13,4 +13,14 @@ export const ListLeagueCardsStyle = styled.div`
     justify-content: center;
     width: 100%;
   }
+  @media (max-width: 420px) {
+    height: 65vh;
+    width: 90vw;
+    .sectionRow {
+      height: 100%;
+      flex-direction: column;
+      overflow-x: scroll;
+      justify-content: space-between;
+    }
+  }
 `;

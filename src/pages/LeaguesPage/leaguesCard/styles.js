@@ -44,4 +44,21 @@ export const LeagueCardStyle = styled.div`
     min-width: 80px;
     min-height: 80px;
   }
+  @media (max-width: 420px) {
+    height: 48vw;
+    width: 65vw;
+
+    .imgBox {
+      width: 100%;
+      height: 30vw;
+    }
+
+    .nameDiv {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
 `;

@@ -53,7 +53,9 @@ const teamsSlice = createSlice({
       const list = state.selectedTeamsList;
       const newList = list.filter((team) => {
         if (team.team.name) {
-          team.team.name.toLowerCase().startsWith(searchValue.toLowerCase());
+          return team.team.name
+            .toLowerCase()
+            .startsWith(searchValue.toLowerCase());
         }
       });
       state.filteredTeamsList = newList;

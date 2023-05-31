@@ -40,14 +40,14 @@ const dashboardSlice = createSlice({
       }
       state.countryList = newList;
       state.filtredCountryList = newList;
+      console.log(state.filtredCountryList);
+      console.log(state.countryList);
     },
     filterCountryList: (state, action) => {
       const searchValue = action.payload;
       const list = state.countryList;
       const newList = list.filter((country) => {
-        if (country.name) {
-          country.name.toLowerCase().startsWith(searchValue.toLowerCase());
-        }
+        return country.name.toLowerCase().startsWith(searchValue.toLowerCase());
       });
       state.filtredCountryList = newList;
     },

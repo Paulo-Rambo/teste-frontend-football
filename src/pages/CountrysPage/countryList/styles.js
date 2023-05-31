@@ -20,6 +20,7 @@ export const ListCards = styled.div`
       height: 100%;
       flex-direction: column;
       overflow-x: scroll;
+      justify-content: space-between;
     }
   }
 `;
