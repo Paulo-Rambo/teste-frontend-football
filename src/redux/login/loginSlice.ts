@@ -7,7 +7,9 @@ import { toast } from "react-toastify";
 export const actionLogin = createAsyncThunk(
   "login/actionLogin",
   async (data: IData, { dispatch }) => {
+    console.log(data.key);
     const response = await getCountrys(data.key);
+    console.log("teste do country");
     dispatch(setCountryList(response.data.response));
     return { key: data.key };
   }
@@ -49,7 +51,6 @@ const loginSlice = createSlice({
       .addCase(actionLogin.pending, (state) => {
         state.loading = true;
         state.error = null;
-        console.log("pending");
       })
       .addCase(actionLogin.fulfilled, (state, action) => {
         state.error = null;
@@ -62,6 +63,7 @@ const loginSlice = createSlice({
           autoClose: 3000,
           theme: "colored",
         });
+        console.log("teste conectado");
       })
       .addCase(actionLogin.rejected, (state, action) => {
         state.loading = false;

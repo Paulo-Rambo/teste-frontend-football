@@ -35,7 +35,9 @@ export default function LoginForm() {
           <span className="spanError">{errors.key?.message}</span>
         </FormInputBoxStyle>
         <div className="buttonDiv">
-          <LogoutButton type="submit">Entrar</LogoutButton>
+          <LogoutButton id="loginInput" name="login" type="submit">
+            Entrar
+          </LogoutButton>
         </div>
       </div>
     </FormStyle>
