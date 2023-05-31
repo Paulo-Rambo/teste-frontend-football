@@ -7,16 +7,18 @@ import seasonsReducer from "./season/seasonsSlice";
 import playersReducer from "./players/playersSlice";
 import leaguesReducer from "./leagues/leaguesSlice";
 
+export const reducer = {
+  login: loginReducer,
+  dashboard: dashboardReducer,
+  teams: teamsReducer,
+  statistics: statisticsReducer,
+  seasons: seasonsReducer,
+  players: playersReducer,
+  leagues: leaguesReducer,
+};
+
 const store = configureStore({
-  reducer: {
-    login: loginReducer,
-    dashboard: dashboardReducer,
-    teams: teamsReducer,
-    statistics: statisticsReducer,
-    seasons: seasonsReducer,
-    players: playersReducer,
-    leagues: leaguesReducer,
-  },
+  reducer,
 });
 
 export default store;
